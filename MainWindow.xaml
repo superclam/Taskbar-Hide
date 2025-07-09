@@ -1,0 +1,11 @@
+<Window x:Class="SmartTaskbarHider.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="任务栏隐藏工具" Height="1" Width="1"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        Visibility="Hidden"
+        WindowState="Minimized">
+    <Grid>
+    </Grid>
+</Window>
