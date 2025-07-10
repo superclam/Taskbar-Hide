@@ -101,7 +101,7 @@ namespace SmartTaskbarHider
             ContextMenuStrip contextMenu = new ContextMenuStrip();
 
             // 快捷显示提示菜单项
-            ToolStripMenuItem shortcutHintItem = new ToolStripMenuItem("快捷显示——右shift+enter");
+            ToolStripMenuItem shortcutHintItem = new ToolStripMenuItem("快捷显示——右shift+1");
             shortcutHintItem.Click += (s, e) => { }; // 空的点击事件，保持可点击状态但不执行任何操作
             contextMenu.Items.Add(shortcutHintItem);
 
@@ -546,7 +546,7 @@ namespace SmartTaskbarHider
         private const int VK_LSHIFT = 0xA0;
         private const int VK_RSHIFT = 0xA1;
         private const int VK_SHIFT = 0x10;
-        private const int VK_RETURN = 0x0D;
+        private const int VK_1 = 0x31;
 
         private LowLevelKeyboardProc _proc = HookCallback;
         private IntPtr _hookID = IntPtr.Zero;
@@ -591,9 +591,9 @@ namespace SmartTaskbarHider
                     {
                         _rightShiftPressed = true;
                     }
-                    else if (vkCode == VK_RETURN && _rightShiftPressed)
+                    else if (vkCode == VK_1 && _rightShiftPressed)
                     {
-                        // 右Shift+Enter 被按下
+                        // 右Shift+1 被按下
                         _instance?.ShiftEnterPressed?.Invoke();
                     }
                 }
