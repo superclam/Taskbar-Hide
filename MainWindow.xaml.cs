@@ -593,21 +593,36 @@ namespace SmartTaskbarHider
 
                 if (wParam == (IntPtr)WM_KEYDOWN)
                 {
-                    if (vkCode == VK_RSHIFT)
+                    if (vkCode == VK_LCONTROL)
                     {
-                        _rightShiftPressed = true;
+                        _leftControlPressed = true;
                     }
-                    else if (vkCode == VK_1 && _rightShiftPressed)
+                    else if (vkCode == VK_LALT)
                     {
-                        // 右Shift+1 被按下
+                        _leftAltPressed = true;
+                    }
+                    else if (_leftControlPressed && _leftAltPressed && !_otherKeyPressed)
+                    {
+                        // Ctrl+Alt 组合键被按下，触发事件
                         _instance?.ShiftEnterPressed?.Invoke();
+                        _otherKeyPressed = true; // 防止重复触发
+                    }
+                    else if (vkCode != VK_LCONTROL && vkCode != VK_LALT)
+                    {
+                        _otherKeyPressed = true;
                     }
                 }
                 else if (wParam == (IntPtr)WM_KEYUP)
                 {
-                    if (vkCode == VK_RSHIFT)
+                    if (vkCode == VK_LCONTROL)
                     {
-                        _rightShiftPressed = false;
+                        _leftControlPressed = false;
+                        _otherKeyPressed = false;
+                    }
+                    else if (vkCode == VK_LALT)
+                    {
+                        _leftAltPressed = false;
+                        _otherKeyPressed = false;
                     }
                 }
             }
