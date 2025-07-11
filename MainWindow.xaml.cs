@@ -101,7 +101,7 @@ namespace SmartTaskbarHider
             ContextMenuStrip contextMenu = new ContextMenuStrip();
 
             // 快捷显示提示菜单项
-            ToolStripMenuItem shortcutHintItem = new ToolStripMenuItem("快捷显示——右shift+1");
+            ToolStripMenuItem shortcutHintItem = new ToolStripMenuItem("快捷显示——ctrl+alt");
             shortcutHintItem.Click += (s, e) => { }; // 空的点击事件，保持可点击状态但不执行任何操作
             contextMenu.Items.Add(shortcutHintItem);
 
@@ -546,10 +546,16 @@ namespace SmartTaskbarHider
         private const int VK_LSHIFT = 0xA0;
         private const int VK_RSHIFT = 0xA1;
         private const int VK_SHIFT = 0x10;
+        private const int VK_LCONTROL = 0xA2;
+        private const int VK_LALT = 0xA4;
+        private const int VK_RETURN = 0x0D;
         private const int VK_1 = 0x31;
 
         private LowLevelKeyboardProc _proc = HookCallback;
         private IntPtr _hookID = IntPtr.Zero;
+        private static bool _leftControlPressed = false;
+        private static bool _leftAltPressed = false;
+        private static bool _otherKeyPressed = false;
         private static bool _rightShiftPressed = false;
         private static KeyboardHook _instance;
 

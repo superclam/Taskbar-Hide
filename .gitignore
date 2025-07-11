@@ -62,3 +62,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Executable files
+exe/
+*.exe
+
+# Zip files
+*.zip
